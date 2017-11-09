@@ -18,16 +18,39 @@
 }
 
 #gameSpace {
+    display: flex;
+    flex-direction: column;
     width: 70%;
     height: 96%;
     border: 1px solid green;
     margin: 2% 2% 2% 2%;
 }
 
+#gameBoard {
+    height: 96%;
+}
+
 #sidebar {
+
     width: 25%;
     max-width: 200px;
-    height: 96%;
     border: 1px solid green;
     margin: 2% auto 2% auto;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 95%;
+    margin: 1% 0 1% 0;
+    border: 1px solid orange;
+}
+
+
+.slot {
+    display: block;
+    width: 98%;
+    height: 16%;
+    border: 1px solid blue;
 }
