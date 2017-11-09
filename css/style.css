@@ -1,0 +1,33 @@
+#topBar {
+  width: 100%;
+  min-width: 800px;
+  height: 10%;
+  border: 1px solid black;
+}
+
+#title {
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    width: 100%;
+    min-width: 800px;
+    height: 800px;
+    border: 1px solid red;
+}
+
+#gameSpace {
+    width: 70%;
+    height: 96%;
+    border: 1px solid green;
+    margin: 2% 2% 2% 2%;
+}
+
+#sidebar {
+    width: 25%;
+    max-width: 200px;
+    height: 96%;
+    border: 1px solid green;
+    margin: 2% auto 2% auto;
+}
