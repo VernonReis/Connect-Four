@@ -36,7 +36,163 @@
             <div id="gameBoard">
 
                 <!--Classic Connect 4 is 7 columns 6 rows, each column gets 6 "slots"-->
-                <!--We'll dynamically generate them in javascript later, lets set a placeholder for now-->
+                <!--We'll dynamically generate them in javascript later, lets set some static placeholders for now-->
+                <div class="column">
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                </div>
+                <div class="column">
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                </div>
+                <div class="column">
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                </div>
+                <div class="column">
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                </div>
+                <div class="column">
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                </div>
+                <div class="column">
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                    <div class="slot">
+
+                    </div>
+
+                </div>
                 <div class="column">
                     <div class="slot">
 
@@ -68,14 +224,49 @@
         </div>
 
 
+
         <!--Here is the div for the sidebar, it's going to house reset controls as well as some other functions-->
         <div id="sidebar">
 
+            <!--Later we'll st this div to trigger a modal with instructions-->
+            <div class="sidebarSection">
+                How to Play
+            </div>
+
+            <!--Maybe we'll implement this feature, for now it serves as content to fill out our sidebar-->
+            <div class="sidebarSection" id="aiDifficulty">
+                <form id="aiSelector">
+                    <h3>AI difficulty</h3>
+                    <label for="easy">Easy</label>
+                    <input type="radio" name="difficulty" id="easy" value="Easy"><br>
+                    <label for="hard">Hard</label>
+                    <input type="radio" name="difficulty" id="hard" value="Hard"><br>
+            </div>
+
+            <div class="sidebarSection" id="scoreBoard">
+                <div class="scoreDisplay">
+                    Player Score: 0
+                </div>
+                <div class="scoreDisplay">
+                    Computer Score: 0
+                </div>
+            </div>
+
+            <div class="sidebarSection">
+                <button id="fullReset" >FULL RESET</button>
+                <button id="clearBoar" >Clear Board</button>
+            </div>
 
 
         </div>
 
     </div>
+
+    <!--Placeholder for instruction modal-->
+    <div id="istructionModal" hidden>
+        HERE ARE THE INSTRUCTIONS
+    </div>
+
 
 
 </body>
