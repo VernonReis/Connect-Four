@@ -11,10 +11,13 @@
 
 #container {
     display: flex;
-    width: 100%;
+    width: auto;
     min-width: 800px;
-    height: 96vh;
+    height: 90vh;
     border: 1px solid red;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    justify-content: center;
     
 }
 
@@ -28,12 +31,14 @@
 }
 
 #gameBoard {
+    display: block;
     flex-direction: row;
     width: auto;
     text-align: center;
-    height: 96vh;
-    margin-right: 0%;
+    height: 80vh;
     text-align: center;
+    min-width: 90vh;
+    margin-right: 0%;
 }
 
 #sidebar {
@@ -41,7 +46,7 @@
     width: 25%;
     max-width: 200px;
     border: 1px solid green;
-    margin: 2% auto 2% 2%;
+    margin: 2% 2% 2% 2%
 }
 
 .column {
