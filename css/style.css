@@ -28,6 +28,7 @@
 
 #gameBoard {
     flex-direction: row;
+    text-align: center;
     height: 96%;
 }
 
@@ -44,7 +45,7 @@
     flex-direction: column;
     width: 13%;
     height: 95%;
-    margin: 1% 0 1% 0;
+    margin: 1% auto 1% auto;
     border: 1px solid orange;
 }
 
@@ -55,7 +56,7 @@
     height: 13%;
     border: 1px solid blue;
 
-    margin: 1% 1% 1% 1%;
+    margin: 1% auto 1% auto;
 }
 
 .sidebarSection {
