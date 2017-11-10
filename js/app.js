@@ -25,19 +25,36 @@ const makeBoard = () =>
 // This function takes an x,y coordinate and returns the token at the position on the game board
 // 0,0 being bottom left 
 // 6,5 being top right
-const tokenAt = (x, y) => {
+const slotAt = (x, y) => {
     const $slots = $('.column').eq(x).children('.slot');
 
     return $slots.eq(($slots.length - 1) - y);
 }
 
-const getCoords = ($token) =>
+const getCoords = ($slot) =>
 {
     const coords = [];
-    coords[0] = $token.attr('column');
-    coords[1] = $token.attr('row');
+    coords[0] = $slot.attr('column');
+    coords[1] = $slot.attr('row');
 
     return coords;
+}
+
+const getColor = ($slot) =>
+{
+    // First make sure theres a token in the slot
+    if ($slot.children().length == 0)
+    {
+        return 'none';
+    }
+    else if ($slot.children().eq(0).hasClass('red'))
+    {
+        return 'red';
+    }
+    else
+    {
+        return 'black';
+    }
 }
 
 const placeToken = (event) =>
@@ -51,15 +68,13 @@ const placeToken = (event) =>
         if ($slots.eq(i).children().length == 0)
         {
             const $token = $('<div>').addClass("token");
-            $token.addClass(colors[turn % 2])
+            $token.addClass(colors[turn % 2]);
             $slots.eq(i).append($token);
             turn++;
             i = 0;
         }
     }
 }
-
-
 
 
 
@@ -70,5 +85,7 @@ $(() => {
 
     // Event handler to add tokens
     $('.column').on('click', placeToken);
+
+
 
 });
