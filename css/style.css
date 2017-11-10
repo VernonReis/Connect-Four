@@ -39,6 +39,7 @@
     text-align: center;
     min-width: 90vh;
     margin-right: 0%;
+    border: 1px solid magenta;
 }
 
 #sidebar {
@@ -57,6 +58,28 @@
     border: 1px solid orange;
 }
 
+#arrows {
+    display: flex;
+    width: auto;
+    text-align: center;
+    height: 16vh;
+    text-align: center;
+    min-width: 90vh;
+    margin-right: 0%;
+    border: 1px solid skyblue;
+
+}
+
+.arrow {
+    display: inline-block;
+    max-height: 133px;
+    max-width: 133px;
+    display: block;
+    width: 11vh;
+    height: 11vh;
+    border: 1px solid blue;
+    margin: 1% auto 1% auto;
+}
 
 .slot {
     max-height: 133px;
