@@ -43,6 +43,16 @@ const placeToken = (event) => {
 
             if (isWinningMove($slots.eq(i), colors[turn % 2])) {
                 isOver = true;
+                if (colors[turn % 2] == 'red')
+                {
+                    playerScore++;
+                    $('#playerScore').text("Player Score: " + playerScore);
+                }
+                else
+                {
+                    cpuScore++;
+                    $('#cpuScore').text("Computer Score: " + cpuScore);
+                }
             }
 
             turn++;
@@ -53,11 +63,14 @@ const placeToken = (event) => {
 
 const clearBoard = (event) => {
     $('.token').remove();
+    turn = 1;
     isOver = false;
 }
 
 const fullReset = (event) => {
     $('.token').remove();
+    $('#playerScore').text("Player Score: 0");
+    $('#cpuScore').text("Computer Score: 0");
     playerScore = 0;
     cpuScore = 0;
     turn = 1;
