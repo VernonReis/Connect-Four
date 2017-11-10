@@ -28,8 +28,7 @@ const placeToken = (event) => {
     const $slots = $column.children('.slot');
 
     // isOver kill condition
-    if (isOver)
-    {
+    if (isOver) {
         return 0;
     }
 
@@ -43,13 +42,11 @@ const placeToken = (event) => {
 
             if (isWinningMove($slots.eq(i), colors[turn % 2])) {
                 isOver = true;
-                if (colors[turn % 2] == 'red')
-                {
+                if (colors[turn % 2] == 'red') {
                     playerScore++;
                     $('#playerScore').text("Player Score: " + playerScore);
                 }
-                else
-                {
+                else {
                     cpuScore++;
                     $('#cpuScore').text("Computer Score: " + cpuScore);
                 }
@@ -194,7 +191,7 @@ const isWinningMove = ($slot, color) => {
         else if (thisColor == color) {
             contiguous++;
         }
-      
+
     }
 
     for (let i = 1; i < 4 && (xCoord - i) >= 0 && (yCoord - i) >= 0; i++) {
@@ -243,6 +240,15 @@ const isWinningMove = ($slot, color) => {
 
 }
 
+const startBounce = (event) => {    
+    $arrow = $(event.currentTarget).children().eq(0).css('animation-name', 'bounce');;
+}
+
+const stopBounce = (event) => {
+    $arrow = $(event.currentTarget).children().eq(0);
+    $arrow.css('animation-name', '');
+}
+
 
 $(() => {
 
@@ -251,8 +257,10 @@ $(() => {
 
     // Event handler to add tokens
     $('.column').on('click', placeToken);
+    $('.column').on('mouseenter', startBounce);
+    $('.column').on('mouseleave', stopBounce);
     $('#clearBoard').on('click', clearBoard);
     $('#fullReset').on('click', fullReset);
-
+    ;
 
 });

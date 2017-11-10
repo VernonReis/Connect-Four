@@ -1,8 +1,15 @@
+body {
+    font-family: 'Cabin Sketch', cursive;
+    background-color: #828081;
+}
+
+
 #topBar {
   width: 100%;
   min-width: 800px;
   height: 10%;
   border: 1px solid black;
+  background-color: #1E392A;
 }
 
 #title {
@@ -16,6 +23,7 @@
     height: auto;
     border: 1px solid red;
     justify-content: center;
+    background-color: #E9C893;
     
 }
 
@@ -29,27 +37,34 @@
     min-width: 90vh;
     border: 1px solid magenta;
     margin: 2% 2% 2% 2%;
+    background-color: #3CC47C;
 }
 
 
 #sidebar {
-
     width: 25vh;
     height: 70vh;
     min-width: 150px;
     max-width: 200px;
     border: 1px solid green;
-    margin: 2% 2% 2% 2%
+    margin: 2% 2% 2% 2%;
+    background-color: #3CC47C;
 }
 
 .column {
     display: inline-flex;
     flex-direction: column;
-    margin: 1% 0.5% 1% 0.5%;
-    border: 1px solid orange;
+    margin: 1% 0.125% 1% 0.125%;
+
 }
 
+.column:hover {
+    background-color: rgba(0,0,0,.25);
+}
 
+button {
+    font-family: 'Cabin Sketch', cursive;
+}
 
 .arrow {
     max-height: 133px;
@@ -59,6 +74,8 @@
     height: 9vh;
     border: 1px solid blue;
     margin: 1% auto 10% auto;
+    animation-duration: .7s;
+    animation-iteration-count: infinite;
 }
 
 .slot {
@@ -69,12 +86,14 @@
     height: 9vh;
     border: 1px solid blue;
     margin: 1% auto 1% auto;
+    border-radius: 50%;
 }
 
 
 .token {
-    width: 9vh;
-    height: 9vh;
+    border-radius: 50%;
+	width: 9vh;
+	height: 9vh; 
 }
 
 .red {
@@ -101,4 +120,15 @@ input {
 
 button {
     width: 40%;
+}
+
+
+@keyframes bounce {
+    0% {transform: translate(0vh);}
+    50% {
+        transform: translate(0vh,-1vh);
+    }
+    110% {
+        transform: translate(0vh);
+    }
 }
