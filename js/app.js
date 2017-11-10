@@ -53,6 +53,7 @@ const placeToken = (event) => {
 
 const clearBoard = (event) => {
     $('.token').remove();
+    isOver = false;
 }
 
 const fullReset = (event) => {
@@ -60,6 +61,7 @@ const fullReset = (event) => {
     playerScore = 0;
     cpuScore = 0;
     turn = 1;
+    isOver: false;
 
 }
 
