@@ -48,9 +48,11 @@ const placeToken = (event) =>
 
     for (let i = ($slots.length - 1); i >= 0; i--)
     {
-        if (!$slots.eq(i).hasClass('red') && !$slots.eq(i).hasClass('black'))
+        if ($slots.eq(i).children().length == 0)
         {
-            $slots.eq(i).addClass(colors[turn%2]);
+            const $token = $('<div>').addClass("token");
+            $token.addClass(colors[turn % 2])
+            $slots.eq(i).append($token);
             turn++;
             i = 0;
         }

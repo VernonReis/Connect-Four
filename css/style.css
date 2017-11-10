@@ -71,6 +71,12 @@
     margin: 1% auto 1% auto;
 }
 
+
+.token {
+    width: 9vh;
+    height: 9vh;
+}
+
 .red {
     background-color: red;
 }
