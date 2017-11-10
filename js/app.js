@@ -43,6 +43,7 @@ $(() => {
     // Dynamic generate the column divs and populate them with an arrow and slots
     makeBoard();
 
+    // Event handler to add tokens
     $('.column').on('click', placeToken);
 
 });
