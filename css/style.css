@@ -13,7 +13,7 @@
     display: flex;
     width: auto;
     min-width: 800px;
-    height: 90vh;
+    height: 119vh;
     border: 1px solid red;
     margin-left: 2vw;
     margin-right: 2vw;
@@ -21,26 +21,29 @@
     
 }
 
-#gameSpace {
+
+
+/*#gameSpace {
     display: flex;
     flex-direction: column;
     width: 105vh;
-    height: 96%;
+    height: 96vh;
     border: 1px solid green;
     margin: 2% 2% 2% 2%;
-}
+}*/
 
 #gameBoard {
     display: block;
     flex-direction: row;
     width: auto;
     text-align: center;
-    height: 80vh;
-    text-align: center;
+    height: 85vh;
     min-width: 90vh;
-    margin-right: 0%;
     border: 1px solid magenta;
+    margin: 2% 2% 2% 2%
 }
+
+
 
 #sidebar {
 
@@ -58,8 +61,9 @@
     border: 1px solid orange;
 }
 
-#arrows {
-    display: flex;
+/*#arrows {
+    display: block;
+    flex-direction: row;
     width: auto;
     text-align: center;
     height: 16vh;
@@ -68,17 +72,16 @@
     margin-right: 0%;
     border: 1px solid skyblue;
 
-}
+}*/
 
 .arrow {
-    display: inline-block;
     max-height: 133px;
     max-width: 133px;
     display: block;
     width: 11vh;
     height: 11vh;
     border: 1px solid blue;
-    margin: 1% auto 1% auto;
+    margin: 1% auto 10% auto;
 }
 
 .slot {
