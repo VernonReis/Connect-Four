@@ -12,7 +12,6 @@
 </head>
 <body>
 
-    <!--This is going to house the title info and tenatively score-->
     <div id="topBar">
 
         <div id="title">
@@ -21,236 +20,15 @@
 
     </div>
 
-    <!--This div is going to house the main gameboard as well as a right hand sidebar-->
+
     <div id="container">
 
 
 
-        <!--This is going to house the game assets-->
- 
+        <div id="gameBoard">
 
-            <!--This is going to house the actual play board which will consist of columns-->
-            <div id="gameBoard">
 
-            <!--Classic Connect 4 is 7 columns 6 rows, each column gets 6 "slots"-->
-            <!--We'll dynamically generate them in javascript later, lets set some static placeholders for now-->
-            <div class="column">
 
-                <div class="arrow">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-            </div>
-            <div class="column">
-
-                <div class="arrow">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-            </div>
-            <div class="column">
-
-                <div class="arrow">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-            </div>
-            <div class="column">
-
-                <div class="arrow">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-            </div>
-            <div class="column">
-
-                <div class="arrow">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-            </div>
-            <div class="column">
-
-                <div class="arrow">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-            </div>
-            <div class="column">
-
-                <div class="arrow">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-                <div class="slot">
-
-                </div>
-
-            </div>
         </div>
 
 
@@ -273,6 +51,7 @@
                     <input type="radio" name="difficulty" id="easy" value="Easy"><br>
                     <label for="hard">Hard</label>
                     <input type="radio" name="difficulty" id="hard" value="Hard"><br>
+                </form>
             </div>
 
             <div class="sidebarSection" id="scoreBoard">

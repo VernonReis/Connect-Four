@@ -15,7 +15,6 @@
     min-width: 800px;
     height: auto;
     border: 1px solid red;
-
     justify-content: center;
     
 }
@@ -46,7 +45,7 @@
 .column {
     display: inline-flex;
     flex-direction: column;
-    margin: 1% auto 1% auto;
+    margin: 1% 0.5% 1% 0.5%;
     border: 1px solid orange;
 }
 
