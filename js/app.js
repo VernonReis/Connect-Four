@@ -1,5 +1,7 @@
 let turn = 1;
 const colors = ['black', 'red'];
+let playerScore = 0;
+let cpuScore = 0;
 
 const makeBoard = () =>
 {
@@ -83,6 +85,13 @@ const clearBoard = (event) =>
     $('.token').remove();
 }
 
+const fullReset = (event) => {
+    $('.token').remove();
+    playerScore = 0;
+    cpuScore = 0;
+    turn = 1;
+
+}
 
 
 $(() => {
@@ -93,6 +102,7 @@ $(() => {
     // Event handler to add tokens
     $('.column').on('click', placeToken);
     $('#clearBoard').on('click', clearBoard);
+    $('#fullReset').on('click', fullReset);
 
 
 });
