@@ -13,10 +13,10 @@
     display: flex;
     width: auto;
     min-width: 800px;
-    height: 119vh;
+    height: auto;
     border: 1px solid red;
-    margin-left: 2vw;
-    margin-right: 2vw;
+    margin-left: 15vw;
+    margin-right: 15vw;
     justify-content: center;
     
 }
@@ -27,17 +27,17 @@
     flex-direction: row;
     width: auto;
     text-align: center;
-    height: 85vh;
+    height: 70vh;
     min-width: 90vh;
     border: 1px solid magenta;
-    margin: 2% 2% 2% 2%
+    margin: 2% 2% 2% 2%;
 }
 
 
 #sidebar {
 
     width: 25vh;
-    height: 85vh;
+    height: 70vh;
     min-width: 150px;
     max-width: 200px;
     border: 1px solid green;
@@ -47,7 +47,7 @@
 .column {
     display: inline-flex;
     flex-direction: column;
-    margin: 1vh auto 1vh auto;
+    margin: 1% auto 1% auto;
     border: 1px solid orange;
 }
 
@@ -57,8 +57,8 @@
     max-height: 133px;
     max-width: 133px;
     display: block;
-    width: 11vh;
-    height: 11vh;
+    width: 9vh;
+    height: 9vh;
     border: 1px solid blue;
     margin: 1% auto 10% auto;
 }
@@ -67,8 +67,8 @@
     max-height: 133px;
     max-width: 133px;
     display: block;
-    width: 11vh;
-    height: 11vh;
+    width: 9vh;
+    height: 9vh;
     border: 1px solid blue;
     margin: 1% auto 1% auto;
 }
