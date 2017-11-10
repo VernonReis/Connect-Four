@@ -13,10 +13,31 @@ const makeBoard = () =>
         // Append 6 slots to each column below the arrow
         for (let j = 0; j < 6; j++)
         {
-            $column.append($('<div>').addClass('slot'));
+            const $slot = $('<div>').addClass('slot');
+            $slot.attr("column", i);
+            $slot.attr("row", 5- j)
+            $column.append($slot);
         }
         $gameBoard.append($column);
     }
+}
+
+// This function takes an x,y coordinate and returns the token at the position on the game board
+// 0,0 being bottom left 
+// 6,5 being top right
+const tokenAt = (x, y) => {
+    const $slots = $('.column').eq(x).children('.slot');
+
+    return $slots.eq(($slots.length - 1) - y);
+}
+
+const getCoords = ($token) =>
+{
+    const coords = [];
+    coords[0] = $token.attr('column');
+    coords[1] = $token.attr('row');
+
+    return coords;
 }
 
 const placeToken = (event) =>
@@ -29,13 +50,15 @@ const placeToken = (event) =>
     {
         if (!$slots.eq(i).hasClass('red') && !$slots.eq(i).hasClass('black'))
         {
-            
             $slots.eq(i).addClass(colors[turn%2]);
             turn++;
             i = 0;
         }
     }
 }
+
+
+
 
 
 $(() => {
