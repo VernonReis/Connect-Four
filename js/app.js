@@ -69,11 +69,18 @@ const placeToken = (event) =>
         {
             const $token = $('<div>').addClass("token");
             $token.addClass(colors[turn % 2]);
+            $token.hide();
             $slots.eq(i).append($token);
+            $token.show("fast");
             turn++;
             i = 0;
         }
     }
+}
+
+const clearBoard = (event) =>
+{
+    $('.token').remove();
 }
 
 
@@ -85,7 +92,7 @@ $(() => {
 
     // Event handler to add tokens
     $('.column').on('click', placeToken);
-
+    $('#clearBoard').on('click', clearBoard);
 
 
 });
