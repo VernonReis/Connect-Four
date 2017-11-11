@@ -35,7 +35,7 @@ body {
     text-align: center;
     height: 70vh;
     min-width: 90vh;
-    min-height: 300px;
+    min-height: 250px;
     border-radius: 2vh;
     margin: 2% 2% 2% 2%;
     background-color: #3CC47C;
@@ -47,7 +47,7 @@ body {
     height: 70vh;
     min-width: 250px;
     max-width: 300px;
-    min-height: 300px;
+    min-height: 250px;
     border-radius: 2vh;
     margin: 2% 2% 2% 2%;
     background-color: #3CC47C;
@@ -116,11 +116,15 @@ button {
 
 .sidebarSection {
     margin: 5% 5% 5% 5%;
-    border: 1px solid hotpink;
+
 }
 
 input {
     display: inline-block;
+}
+
+#aiDifficulty {
+    margin-bottom: 10%;
 }
 
 #aiSelector {

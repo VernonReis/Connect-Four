@@ -118,7 +118,7 @@ const placeToken = ($column) => {
 
                     }
                     else {
-                        $('#cpuModal').css('display', 'flex');
+                        $('#cpuWinModal').css('display', 'flex');
                         setInterval(() => {
                             $('#cpuWinModal').css('display', 'none');
                             clearBoard();
@@ -207,7 +207,7 @@ const cpuHard = () => {
                     $('#cpuScore').text("Computer Score: " + cpuScore);
 
                     // PLACE MODAL CODE HERE
-                    $('#cpuModal').css('display', 'flex');
+                    $('#cpuWinModal').css('display', 'flex');
                     setInterval(() => {
                         $('#cpuWinModal').css('display', 'none');
                         clearBoard();
