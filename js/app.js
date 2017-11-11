@@ -88,7 +88,7 @@ const placeToken = ($column) => {
                     if ($('#off:checked').length == 1)
                     {
                         $('#playerOneWinModal').css('display', 'flex');
-                        setInterval(() => {
+                        setTimeout(() => {
                             $('#playerOneWinModal').css('display', 'none');
                             clearBoard();
                         }, 3000);
@@ -97,7 +97,7 @@ const placeToken = ($column) => {
                     else
                     {
                         $('#youWinModal').css('display', 'flex');
-                        setInterval(() => {
+                        setTimeout(() => {
                             $('#youWinModal').css('display', 'none');
                             clearBoard();
                         }, 3000);
@@ -111,7 +111,7 @@ const placeToken = ($column) => {
 
                     if ($('#off:checked').length == 1) {
                         $('#playerTwoWinModal').css('display', 'flex');
-                        setInterval(() => {
+                        setTimeout(() => {
                             $('#playerTwoWinModal').css('display', 'none');
                             clearBoard();
                         }, 3000);
@@ -119,10 +119,11 @@ const placeToken = ($column) => {
                     }
                     else {
                         $('#cpuWinModal').css('display', 'flex');
-                        setInterval(() => {
+                        setTimeout(() => {
                             $('#cpuWinModal').css('display', 'none');
                             clearBoard();
                         }, 3000);
+                        
 
                     }
                 }
@@ -159,14 +160,14 @@ const enableRadio = () => {
 }
 
 const clearBoard = (event) => {
-    $('.token').remove();
+    $('.slot').children().remove();
     turn = 1;
     isOver = false;
     enableRadio();
 }
 
 const fullReset = (event) => {
-    $('.token').remove();
+    $('.slot').children().remove();
     $('#playerScore').text("Player Score: 0");
     $('#cpuScore').text("Computer Score: 0");
     playerScore = 0;
@@ -208,7 +209,7 @@ const cpuHard = () => {
 
                     // PLACE MODAL CODE HERE
                     $('#cpuWinModal').css('display', 'flex');
-                    setInterval(() => {
+                    setTimeout(() => {
                         $('#cpuWinModal').css('display', 'none');
                         clearBoard();
                     }, 3000);
