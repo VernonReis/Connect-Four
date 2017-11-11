@@ -81,6 +81,13 @@ const placeToken = ($column) => {
                 if (colors[turn % 2] == 'red') {
                     playerScore++;
                     $('#playerScore').text("Player Score: " + playerScore);
+
+                    // MODAL CODE
+                    // If we are vs human
+                    if ($('#off:checked').length == 1)
+                    {
+                        $('#playerOneWinModal').css('display', 'block');
+                    }
                 }
                 else {
                     cpuScore++;

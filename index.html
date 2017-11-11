@@ -55,7 +55,7 @@
                         <input type="radio" name="difficulty" id="easy" value="Easy" checked>
                         <label for="easy">Easy</label>
                     </div>
-             
+
                     <div class="menuEntry">
                         <input type="radio" name="difficulty" id="hard" value="Hard">
                         <label for="hard">Hard</label>
@@ -88,25 +88,49 @@
     </div>
 
     <!--Placeholder for instruction modal-->
-    <div id="istructionModal" hidden>
-        HERE ARE THE INSTRUCTIONS
+    <div class="modal" id="istructionModal" hidden>
+        <div class="modal-textbox">
+            HERE ARE THE INSTRUCTIONS
+        </div>
     </div>
 
-    <div id="youWinModal" hidden>
-        You Won!
+    <div class="modal" id="youWinModal" hidden>
+        <div class="modal-textbox">
+            You Won!
+        </div>
     </div>
 
-    <div id="cpuEasyWinModal" hidden>
-        You Lost
+    <div class="modal" id="playerOneWinModal" hidden>
+        <div class="modal-textbox">
+            Player One Wins!
+        </div>
+    </div>
+
+    <div class="modal" id="playerTwoWinModal" hidden>
+        <div class="modal-textbox">
+            Player Two Won!
+        </div>
+    </div>
+
+    <div class="modal" id="cpuEasyWinModal" hidden>
+        <div class="modal-textbox">
+            You Lost
+        </div>
     </div>
 
     <!--This one is gonna look like the you died screen from dark souls-->
-    <div id="cpuHardWinModal" hidden>
-        You Lost
+    <div class="modal" id="cpuHardWinModal" hidden>
+        <div class="modal-textbox">
+            You Lost
+        </div>
     </div>
+
     
-    <div id="theyWinModal" hidden>
-        Player Two Won!
+
+    <div class="modal" id="tie" hidden>
+        <div class="modal-textbox">
+            Player Two Won!
+        </div>
     </div>
 
 </body>
