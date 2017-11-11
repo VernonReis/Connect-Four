@@ -10,9 +10,7 @@ const makeBoard = () => {
         // Generate a new column and append the arrow
         const $column = $('<div>').addClass('column');
         const $arrow = $('<div>').addClass('arrow');
-        const $arrowImg = $('<img class="arrowImg" src="images/arrow.png">');
         
-        $arrow.append($arrowImg);
         $column.append($arrow);
 
         // Append 6 slots to each column below the arrow
@@ -38,8 +36,7 @@ const placeToken = (event) => {
 
     for (let i = ($slots.length - 1); i >= 0; i--) {
         if ($slots.eq(i).children().length == 0) {
-            const $token = $('<div>').addClass("token");
-            $token.addClass(colors[turn % 2]);
+            
             $token.hide();
             $slots.eq(i).append($token);
             $token.show('bounce','ease-in',900);
@@ -79,7 +76,50 @@ const fullReset = (event) => {
 
 }
 
+const cpuHard = () =>
+{
+    // CPU strategy as follows
+    // 1. Check to see if can make a winning move
+    // 2. Else check to see if the player can make a winning move, if so block it
+    // 3. Else generate a random choice, double check choice won't set player up for a win
 
+    // function globals
+    let madeMove = false;
+    const $columns = $('.column');
+
+    // token for play
+    const $token = $('<div>').addClass("token");
+    $token.addClass(colors[turn % 2]);
+
+    // 1. Check through the 7 columns to see if they will work
+    for (let i = 0; i > $columns.length; i++)
+    {
+        const $slots = $columns.eq(i).children();
+        for (let j = ($slots.length - 1); j >= 0; j--) {
+            if ($slots.eq(j).children().length == 0) {
+                // found out empty slot, check if its a winner
+                if (isWinningMove($slots.eq(j), colors[turn % 2]))
+                {
+                    // We have a winnner, place token and set win to over
+                    isOver = true;
+                    $slots.eq(j).append($token);
+
+                    // PLACE MODAL CODE HERE
+
+                }
+
+            }
+        }
+    }
+
+
+
+}
+
+const cpuEasy = () =>
+{
+    // Just make a random move
+}
 
 
 const slotAt = (x, y) => {
