@@ -10,7 +10,7 @@ const makeBoard = () => {
         // Generate a new column and append the arrow
         const $column = $('<div>').addClass('column');
         const $arrow = $('<div>').addClass('arrow');
-        
+
         $column.append($arrow);
 
         // Append 6 slots to each column below the arrow
@@ -29,29 +29,36 @@ const clickHandler = (event) => {
     const $column = $(event.currentTarget);
     placeToken($column);
 
-    if (turn == 2)
-    {
+    if (turn == 2) {
         disableRadio();
     }
 
-    if (!isOver)
-    {
+    if (boardFull()) {
+        isOver = true;
 
-        if ($('#easy:checked').length == 1)
-        {
+        // INVOKE TIE MODAL
+    }
+
+    if (!isOver) {
+
+        if ($('#easy:checked').length == 1) {
 
             cpuEasy();
         }
 
-        if ($('#hard:checked').length == 1)
-        {
+        if ($('#hard:checked').length == 1) {
             cpuHard();
+        }
+
+        if (boardFull()) {
+            isOver = true;
+
+            // INVOKE TIE MODAL
         }
     }
 }
 
-const placeToken = ($column) =>
-{
+const placeToken = ($column) => {
     const $slots = $column.children('.slot');
 
     // isOver kill condition
@@ -87,8 +94,19 @@ const placeToken = ($column) =>
     }
 }
 
-const disableRadio = () =>
-{
+const boardFull = () => {
+    const $columns = $('.column');
+    for (let i = 0; i < $columns.length; i++) {
+        const $slots = $columns.eq(i).children('.slot');
+        for (let j = 0; j < $slots.length; j++) {
+            if ($slots.eq(j).children().length == 0) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+const disableRadio = () => {
     $('#easy').attr('disabled', 'true');
     $('#hard').attr('disabled', 'true');
     $('#off').attr('disabled', 'true');
@@ -118,8 +136,7 @@ const fullReset = (event) => {
     enableRadio();
 }
 
-const cpuHard = () =>
-{
+const cpuHard = () => {
     // CPU strategy as follows
     // 1. Check to see if can make a winning move
     // 2. Else check to see if the player can make a winning move, if so block it
@@ -133,15 +150,13 @@ const cpuHard = () =>
     $token.addClass(colors[turn % 2]);
 
     // 1. Check through the 7 columns to see if they will work
-    for (let i = 0; i < $columns.length; i++)
-    {
+    for (let i = 0; i < $columns.length; i++) {
         const $slots = $columns.eq(i).children('.slot');
         for (let j = ($slots.length - 1); j >= 0; j--) {
-            
+
             if ($slots.eq(j).children().length == 0) {
                 // found out empty slot, check if its a winner
-                if (isWinningMove($slots.eq(j), colors[turn % 2]))
-                {
+                if (isWinningMove($slots.eq(j), colors[turn % 2])) {
                     // We have a winnner, place token and set win to over
                     $token.hide();
                     $slots.eq(j).append($token);
@@ -168,8 +183,8 @@ const cpuHard = () =>
         for (let j = ($slots.length - 1); j > 0; j--) {
             if ($slots.eq(j).children().length == 0) {
                 // found out empty slot, check if its a winner
-               
-                if (isWinningMove($slots.eq(j), colors[(turn+1) % 2])) {
+
+                if (isWinningMove($slots.eq(j), colors[(turn + 1) % 2])) {
                     // found a potential win move for the player, block it
                     $token.hide();
                     $slots.eq(j).append($token);
@@ -202,12 +217,10 @@ const cpuHard = () =>
 
 
 
-const cpuEasy = () =>
-{
+const cpuEasy = () => {
     const thisTurn = turn;
 
-    while (thisTurn == turn)
-    {
+    while (thisTurn == turn) {
         const randomCol = Math.floor(Math.random() * 7);
         const $column = $('.column').eq(randomCol);
         placeToken($column);
@@ -336,10 +349,10 @@ const isWinningMove = ($slot, color) => {
     for (let i = 1; i < 4 && (xCoord - i) >= 0 && (yCoord - i) >= 0; i++) {
         const thisColor = getColor(slotAt(xCoord - i, yCoord - i));
         if (thisColor == color) {
-             contiguous++;
+            contiguous++;
         }
         else if (thisColor == color) {
-           i = 4;
+            i = 4;
         }
     }
     if (contiguous >= 4) {
@@ -356,7 +369,7 @@ const isWinningMove = ($slot, color) => {
         if (thisColor == color) {
             contiguous++;
         }
-        else{
+        else {
             i = 4;
         }
 
@@ -365,10 +378,10 @@ const isWinningMove = ($slot, color) => {
     for (let i = 1; i < 4 && (xCoord - i) >= 0 && (yCoord + i) < 6; i++) {
         const thisColor = getColor(slotAt(xCoord - i, yCoord + i));
         if (thisColor == color) {
-              contiguous++;
+            contiguous++;
         }
         else {
-          i = 4;
+            i = 4;
         }
     }
     if (contiguous >= 4) {
@@ -380,7 +393,7 @@ const isWinningMove = ($slot, color) => {
 
 }
 
-const startBounce = (event) => {    
+const startBounce = (event) => {
     $arrow = $(event.currentTarget).children().eq(0).css('animation-name', 'bounce');;
 }
 
