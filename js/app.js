@@ -30,7 +30,7 @@ const clickHandler = (event) => {
     placeToken($column);
     if (!isOver)
     {
-        cpuEasy();
+        cpuHard();
     }
 }
 
@@ -101,7 +101,7 @@ const cpuHard = () =>
     $token.addClass(colors[turn % 2]);
 
     // 1. Check through the 7 columns to see if they will work
-    for (let i = 0; i > $columns.length; i++)
+    for (let i = 0; i < $columns.length; i++)
     {
         const $slots = $columns.eq(i).children('.slot');
         for (let j = ($slots.length - 1); j >= 0; j--) {
@@ -129,7 +129,7 @@ const cpuHard = () =>
     }
 
     // 2. Check to see if can block winning move
-    for (let i = 0; i > $columns.length; i++) {
+    for (let i = 0; i < $columns.length; i++) {
         const $slots = $columns.eq(i).children('.slot');
         for (let j = ($slots.length - 1); j > 0; j--) {
             if ($slots.eq(j).children().length == 0) {
