@@ -111,8 +111,9 @@ const cpuHard = () =>
                 {
                     // We have a winnner, place token and set win to over
 
-
+                    $token.hide();
                     $slots.eq(j).append($token);
+                    $token.show('bounce', 'ease-in', 900);
                     turn++;
                     isOver = true;
                     cpuScore++;
@@ -136,7 +137,9 @@ const cpuHard = () =>
                 // found out empty slot, check if its a winner
                 if (isWinningMove($slots.eq(j), colors[(turn+1) % 2])) {
                     // found a potential win move for the player, block it
+                    $token.hide();
                     $slots.eq(j).append($token);
+                    $token.show('bounce', 'ease-in', 900);
                     turn++;
                     // PLACE MODAL CODE HERE
 
@@ -156,7 +159,9 @@ const cpuHard = () =>
             if ($slots.eq(j).children().length == 0) {
                 // Found an empty slot, check to see slot above won't win for player
                     // made sure player won't win off this move'
-                    $slots.eq(j).append($token);
+                $token.hide();
+                $slots.eq(j).append($token);
+                $token.show('bounce', 'ease-in', 900);
                     turn++;
 
                     // PLACE MODAL CODE HERE
