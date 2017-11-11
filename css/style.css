@@ -72,10 +72,15 @@ button {
     display: block;
     width: 9vh;
     height: 9vh;
-    border: 1px solid blue;
+
     margin: 1% auto 10% auto;
     animation-duration: .7s;
     animation-iteration-count: infinite;
+}
+
+.arrowImg {
+    width: 9vh;
+    height: 9vh;
 }
 
 .slot {

@@ -9,7 +9,11 @@ const makeBoard = () => {
     for (let i = 0; i < 7; i++) {
         // Generate a new column and append the arrow
         const $column = $('<div>').addClass('column');
-        $column.append($('<div>').addClass('arrow'));
+        const $arrow = $('<div>').addClass('arrow');
+        const $arrowImg = $('<img class="arrowImg" src="images/arrow.png">');
+        
+        $arrow.append($arrowImg);
+        $column.append($arrow);
 
         // Append 6 slots to each column below the arrow
         for (let j = 0; j < 6; j++) {
