@@ -45,7 +45,6 @@ const clickHandler = (event) => {
 
         if ($('#hard:checked').length == 1)
         {
-            console.log('hard ' + $('#hard:checked').length)
             cpuHard();
         }
     }
