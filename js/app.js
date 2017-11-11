@@ -36,7 +36,8 @@ const placeToken = (event) => {
 
     for (let i = ($slots.length - 1); i >= 0; i--) {
         if ($slots.eq(i).children().length == 0) {
-            
+            const $token = $('<div>').addClass("token");
+            $token.addClass(colors[turn % 2]);
             $token.hide();
             $slots.eq(i).append($token);
             $token.show('bounce','ease-in',900);
@@ -83,10 +84,9 @@ const cpuHard = () =>
     // 2. Else check to see if the player can make a winning move, if so block it
     // 3. Else generate a random choice, double check choice won't set player up for a win
 
-    // function globals
-    let madeMove = false;
+    // function global
     const $columns = $('.column');
-
+    let foundRandom = false;
     // token for play
     const $token = $('<div>').addClass("token");
     $token.addClass(colors[turn % 2]);
@@ -94,20 +94,68 @@ const cpuHard = () =>
     // 1. Check through the 7 columns to see if they will work
     for (let i = 0; i > $columns.length; i++)
     {
-        const $slots = $columns.eq(i).children();
+        const $slots = $columns.eq(i).children('.slot');
         for (let j = ($slots.length - 1); j >= 0; j--) {
             if ($slots.eq(j).children().length == 0) {
                 // found out empty slot, check if its a winner
                 if (isWinningMove($slots.eq(j), colors[turn % 2]))
                 {
                     // We have a winnner, place token and set win to over
-                    isOver = true;
+
+
                     $slots.eq(j).append($token);
+                    turn++;
+                    isOver = true;
+                    cpuScore++;
+                    $('#cpuScore').text("Computer Score: " + cpuScore);
 
                     // PLACE MODAL CODE HERE
 
-                }
 
+                    // Terminate the function
+                    return 0;
+                }
+            }
+        }
+    }
+
+    // 2. Check to see if can block winning move
+    for (let i = 0; i > $columns.length; i++) {
+        const $slots = $columns.eq(i).children('.slot');
+        for (let j = ($slots.length - 1); j > 0; j--) {
+            if ($slots.eq(j).children().length == 0) {
+                // found out empty slot, check if its a winner
+                if (isWinningMove($slots.eq(j), colors[(turn+1) % 2])) {
+                    // found a potential win move for the player, block it
+                    $slots.eq(j).append($token);
+                    turn++;
+                    // PLACE MODAL CODE HERE
+
+
+                    // Terminate the function
+                    return 0;
+                }
+            }
+        }
+    }
+
+    while (!foundRandom)
+    {
+        const randomCol = Math.floor(Math.random() * 7);
+        const $slots = $columns.eq(randomCol).children();
+        for (let j = ($slots.length - 1); j >= 0; j--) {
+            if ($slots.eq(j).children().length == 0) {
+                // Found an empty slot, check to see slot above won't win for player
+                    // made sure player won't win off this move'
+                    $slots.eq(j).append($token);
+                    turn++;
+
+                    // PLACE MODAL CODE HERE
+
+
+                    // Terminate the function
+                    return 0;
+                
             }
         }
     }
@@ -116,9 +164,45 @@ const cpuHard = () =>
 
 }
 
+
+
+
+
 const cpuEasy = () =>
 {
-    // Just make a random move
+    // This is our event handler for clicking on a column
+    const $column = $(event.currentTarget);
+    const $slots = $column.children('.slot');
+
+    // isOver kill condition
+    if (isOver) {
+        return 0;
+    }
+
+    for (let i = ($slots.length - 1); i >= 0; i--) {
+        if ($slots.eq(i).children().length == 0) {
+            const $token = $('<div>').addClass("token");
+            $token.addClass(colors[turn % 2]);
+            $token.hide();
+            $slots.eq(i).append($token);
+            $token.show('bounce', 'ease-in', 900);
+
+            if (isWinningMove($slots.eq(i), colors[turn % 2])) {
+                isOver = true;
+                if (colors[turn % 2] == 'red') {
+                    playerScore++;
+                    $('#playerScore').text("Player Score: " + playerScore);
+                }
+                else {
+                    cpuScore++;
+                    $('#cpuScore').text("Computer Score: " + cpuScore);
+                }
+            }
+
+            turn++;
+            i = 0;
+        }
+    }
 }
 
 
