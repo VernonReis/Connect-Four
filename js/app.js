@@ -24,9 +24,18 @@ const makeBoard = () => {
     }
 }
 
-const placeToken = (event) => {
+const clickHandler = (event) => {
     // This is our event handler for clicking on a column
     const $column = $(event.currentTarget);
+    placeToken($column);
+    if (!isOver)
+    {
+        cpuEasy();
+    }
+}
+
+const placeToken = ($column) =>
+{
     const $slots = $column.children('.slot');
 
     // isOver kill condition
@@ -40,7 +49,7 @@ const placeToken = (event) => {
             $token.addClass(colors[turn % 2]);
             $token.hide();
             $slots.eq(i).append($token);
-            $token.show('bounce','ease-in',900);
+            $token.show('bounce', 'ease-in', 900);
 
             if (isWinningMove($slots.eq(i), colors[turn % 2])) {
                 isOver = true;
@@ -170,38 +179,13 @@ const cpuHard = () =>
 
 const cpuEasy = () =>
 {
-    // This is our event handler for clicking on a column
-    const $column = $(event.currentTarget);
-    const $slots = $column.children('.slot');
+    const thisTurn = turn;
 
-    // isOver kill condition
-    if (isOver) {
-        return 0;
-    }
-
-    for (let i = ($slots.length - 1); i >= 0; i--) {
-        if ($slots.eq(i).children().length == 0) {
-            const $token = $('<div>').addClass("token");
-            $token.addClass(colors[turn % 2]);
-            $token.hide();
-            $slots.eq(i).append($token);
-            $token.show('bounce', 'ease-in', 900);
-
-            if (isWinningMove($slots.eq(i), colors[turn % 2])) {
-                isOver = true;
-                if (colors[turn % 2] == 'red') {
-                    playerScore++;
-                    $('#playerScore').text("Player Score: " + playerScore);
-                }
-                else {
-                    cpuScore++;
-                    $('#cpuScore').text("Computer Score: " + cpuScore);
-                }
-            }
-
-            turn++;
-            i = 0;
-        }
+    while (thisTurn == turn)
+    {
+        const randomCol = Math.floor(Math.random() * 7);
+        const $column = $('.column').eq(randomCol);
+        placeToken($column);
     }
 }
 
@@ -384,7 +368,7 @@ $(() => {
     makeBoard();
 
     // Event handler to add tokens
-    $('.column').on('click', placeToken);
+    $('.column').on('click', clickHandler);
     $('.column').on('mouseenter', startBounce);
     $('.column').on('mouseleave', stopBounce);
     $('#clearBoard').on('click', clearBoard);
