@@ -42,7 +42,7 @@ const placeToken = (event) => {
             $token.addClass(colors[turn % 2]);
             $token.hide();
             $slots.eq(i).append($token);
-            $token.show("fast");
+            $token.show('bounce','ease-in',900);
 
             if (isWinningMove($slots.eq(i), colors[turn % 2])) {
                 isOver = true;
