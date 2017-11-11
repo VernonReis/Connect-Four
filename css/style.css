@@ -143,15 +143,25 @@ button {
     z-index: 1;
     overflow: auto;
     display: none;
+    vertical-align: middle;
 }
 
 .modal-textbox {
     background-color: white;
-    height: 350px;
-    width: 350px;
+    height: 20%;
+    width: 30%;
     border-radius: 2px;
-    margin: 150px auto;
+    margin: auto;
+    vertical-align: middle;
+    border-radius: 2vh;
+    display: flex;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modal-textbox > div {
+    margin: auto;
+    text-align: center;
+    font-size: 4vh;
 }
 
 

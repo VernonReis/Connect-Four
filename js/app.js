@@ -26,6 +26,7 @@ const makeBoard = () => {
 
 const clickHandler = (event) => {
     // This is our event handler for clicking on a column
+    const thisTurn = turn;
     const $column = $(event.currentTarget);
     placeToken($column);
 
@@ -39,7 +40,7 @@ const clickHandler = (event) => {
         // INVOKE TIE MODAL
     }
 
-    if (!isOver) {
+    if (!isOver && thisTurn != turn) {
 
         if ($('#easy:checked').length == 1) {
 
@@ -86,12 +87,44 @@ const placeToken = ($column) => {
                     // If we are vs human
                     if ($('#off:checked').length == 1)
                     {
-                        $('#playerOneWinModal').css('display', 'block');
+                        $('#playerOneWinModal').css('display', 'flex');
+                        setInterval(() => {
+                            $('#playerOneWinModal').css('display', 'none');
+                            clearBoard();
+                        }, 3000);
+                        
+                    }
+                    else
+                    {
+                        $('#youWinModal').css('display', 'flex');
+                        setInterval(() => {
+                            $('#youWinModal').css('display', 'none');
+                            clearBoard();
+                        }, 3000);
+
                     }
                 }
                 else {
                     cpuScore++;
                     $('#cpuScore').text("Computer Score: " + cpuScore);
+
+
+                    if ($('#off:checked').length == 1) {
+                        $('#playerTwoWinModal').css('display', 'flex');
+                        setInterval(() => {
+                            $('#playerTwoWinModal').css('display', 'none');
+                            clearBoard();
+                        }, 3000);
+
+                    }
+                    else {
+                        $('#cpuModal').css('display', 'flex');
+                        setInterval(() => {
+                            $('#cpuWinModal').css('display', 'none');
+                            clearBoard();
+                        }, 3000);
+
+                    }
                 }
             }
 
@@ -174,7 +207,11 @@ const cpuHard = () => {
                     $('#cpuScore').text("Computer Score: " + cpuScore);
 
                     // PLACE MODAL CODE HERE
-
+                    $('#cpuModal').css('display', 'flex');
+                    setInterval(() => {
+                        $('#cpuWinModal').css('display', 'none');
+                        clearBoard();
+                    }, 3000);
 
                     // Terminate the function
                     return 0;
@@ -197,7 +234,6 @@ const cpuHard = () => {
                     $slots.eq(j).append($token);
                     $token.show('bounce', 'ease-in', 900);
                     turn++;
-                    // PLACE MODAL CODE HERE
 
 
                     // Terminate the function
