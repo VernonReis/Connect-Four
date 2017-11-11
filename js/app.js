@@ -28,9 +28,26 @@ const clickHandler = (event) => {
     // This is our event handler for clicking on a column
     const $column = $(event.currentTarget);
     placeToken($column);
+
+    if (turn == 2)
+    {
+        disableRadio();
+    }
+
     if (!isOver)
     {
-        cpuHard();
+
+        if ($('#easy:checked').length == 1)
+        {
+
+            cpuEasy();
+        }
+
+        if ($('#hard:checked').length == 1)
+        {
+            console.log('hard ' + $('#hard:checked').length)
+            cpuHard();
+        }
     }
 }
 
@@ -52,6 +69,8 @@ const placeToken = ($column) =>
             $token.show('bounce', 'ease-in', 900);
 
             if (isWinningMove($slots.eq(i), colors[turn % 2])) {
+                console.log('slot: ' + $slots);
+                console.log('i: ' + i);
                 isOver = true;
                 if (colors[turn % 2] == 'red') {
                     playerScore++;
@@ -69,10 +88,24 @@ const placeToken = ($column) =>
     }
 }
 
+const disableRadio = () =>
+{
+    $('#easy').attr('disabled', 'true');
+    $('#hard').attr('disabled', 'true');
+    $('#off').attr('disabled', 'true');
+}
+
+const enableRadio = () => {
+    $('#easy').removeAttr('disabled');
+    $('#hard').removeAttr('disabled');
+    $('#off').removeAttr('disabled');
+}
+
 const clearBoard = (event) => {
     $('.token').remove();
     turn = 1;
     isOver = false;
+    enableRadio();
 }
 
 const fullReset = (event) => {
@@ -83,7 +116,7 @@ const fullReset = (event) => {
     cpuScore = 0;
     turn = 1;
     isOver: false;
-
+    enableRadio();
 }
 
 const cpuHard = () =>
@@ -111,7 +144,6 @@ const cpuHard = () =>
                 if (isWinningMove($slots.eq(j), colors[turn % 2]))
                 {
                     // We have a winnner, place token and set win to over
-                    console.log("win");
                     $token.hide();
                     $slots.eq(j).append($token);
                     $token.show('bounce', 'ease-in', 900);
@@ -137,11 +169,9 @@ const cpuHard = () =>
         for (let j = ($slots.length - 1); j > 0; j--) {
             if ($slots.eq(j).children().length == 0) {
                 // found out empty slot, check if its a winner
-                console.log("row " + $slots.eq(j).attr("row"));
-                console.log("child length " + $slots.eq(j).children().length);
+               
                 if (isWinningMove($slots.eq(j), colors[(turn+1) % 2])) {
                     // found a potential win move for the player, block it
-                    console.log("block");
                     $token.hide();
                     $slots.eq(j).append($token);
                     $token.show('bounce', 'ease-in', 900);
@@ -162,7 +192,6 @@ const cpuHard = () =>
     while (thisTurn == turn) {
         const randomCol = Math.floor(Math.random() * 7);
         const $column = $('.column').eq(randomCol);
-        console.log("random");
         placeToken($column);
     }
 
@@ -232,26 +261,27 @@ const isWinningMove = ($slot, color) => {
     // Check to the left
     for (let i = 1; i < 4 && (xCoord - i) >= 0; i++) {
         const thisColor = getColor(slotAt(xCoord - i, yCoord));
-        if (thisColor == 'none') {
-            i = 4;
-        }
-        else if (thisColor == color) {
+        if (thisColor == color) {
             contiguous++;
+        }
+        else {
+            i = 4;
         }
     }
 
     // Check to the right
     for (let i = 1; i < 4 && (xCoord + i) < 7; i++) {
         const thisColor = getColor(slotAt(xCoord + i, yCoord));
-        if (thisColor == 'none') {
-            i = 4;
-        }
-        else if (thisColor == color) {
+        if (thisColor == color) {
             contiguous++;
+        }
+        else {
+            i = 4;
         }
     }
 
     if (contiguous >= 4) {
+
         return true;
     }
 
@@ -263,27 +293,28 @@ const isWinningMove = ($slot, color) => {
     // Check down
     for (let i = 1; i < 4 && (yCoord - i) >= 0; i++) {
         const thisColor = getColor(slotAt(xCoord, yCoord - i));
-        if (thisColor == 'none') {
-            i = 4;
-        }
-        else if (thisColor == color) {
+        if (thisColor == color) {
             contiguous++;
+        }
+        else {
+            i = 4;
         }
     }
 
     // Check to the right
     for (let i = 1; i < 4 && (yCoord + i) < 6; i++) {
         const thisColor = getColor(slotAt(xCoord, yCoord + i));
-        if (thisColor == 'none') {
-            i = 4;
-        }
-        else if (thisColor == color) {
+        if (thisColor == color) {
             contiguous++;
+        }
+        else {
+            i = 4;
         }
     }
 
 
     if (contiguous >= 4) {
+
         return true;
     }
 
@@ -294,25 +325,26 @@ const isWinningMove = ($slot, color) => {
 
     for (let i = 1; i < 4 && (xCoord + i) < 7 && (yCoord + i) < 6; i++) {
         const thisColor = getColor(slotAt(xCoord + i, yCoord + i));
-        if (thisColor == 'none') {
-            i = 4;
-        }
-        else if (thisColor == color) {
+        if (thisColor == color) {
             contiguous++;
+        }
+        else {
+            i = 4;
         }
 
     }
 
     for (let i = 1; i < 4 && (xCoord - i) >= 0 && (yCoord - i) >= 0; i++) {
         const thisColor = getColor(slotAt(xCoord - i, yCoord - i));
-        if (thisColor == 'none') {
-            i = 4;
+        if (thisColor == color) {
+             contiguous++;
         }
         else if (thisColor == color) {
-            contiguous++;
+           i = 4;
         }
     }
     if (contiguous >= 4) {
+
         return true;
     }
 
@@ -322,22 +354,22 @@ const isWinningMove = ($slot, color) => {
     // diagonal check 2
     for (let i = 1; i < 4 && (xCoord + i) < 7 && (yCoord - i) >= 0; i++) {
         const thisColor = getColor(slotAt(xCoord + i, yCoord - i));
-        if (thisColor == 'none') {
-            i = 4;
-        }
-        else if (thisColor == color) {
+        if (thisColor == color) {
             contiguous++;
+        }
+        else{
+            i = 4;
         }
 
     }
 
     for (let i = 1; i < 4 && (xCoord - i) >= 0 && (yCoord + i) < 6; i++) {
         const thisColor = getColor(slotAt(xCoord - i, yCoord + i));
-        if (thisColor == 'none') {
-            i = 4;
+        if (thisColor == color) {
+              contiguous++;
         }
-        else if (thisColor == color) {
-            contiguous++;
+        else {
+          i = 4;
         }
     }
     if (contiguous >= 4) {
