@@ -105,12 +105,13 @@ const cpuHard = () =>
     {
         const $slots = $columns.eq(i).children('.slot');
         for (let j = ($slots.length - 1); j >= 0; j--) {
+            
             if ($slots.eq(j).children().length == 0) {
                 // found out empty slot, check if its a winner
                 if (isWinningMove($slots.eq(j), colors[turn % 2]))
                 {
                     // We have a winnner, place token and set win to over
-
+                    console.log("win");
                     $token.hide();
                     $slots.eq(j).append($token);
                     $token.show('bounce', 'ease-in', 900);
@@ -125,6 +126,7 @@ const cpuHard = () =>
                     // Terminate the function
                     return 0;
                 }
+                j = -1;
             }
         }
     }
@@ -135,8 +137,11 @@ const cpuHard = () =>
         for (let j = ($slots.length - 1); j > 0; j--) {
             if ($slots.eq(j).children().length == 0) {
                 // found out empty slot, check if its a winner
+                console.log("row " + $slots.eq(j).attr("row"));
+                console.log("child length " + $slots.eq(j).children().length);
                 if (isWinningMove($slots.eq(j), colors[(turn+1) % 2])) {
                     // found a potential win move for the player, block it
+                    console.log("block");
                     $token.hide();
                     $slots.eq(j).append($token);
                     $token.show('bounce', 'ease-in', 900);
@@ -147,31 +152,18 @@ const cpuHard = () =>
                     // Terminate the function
                     return 0;
                 }
+                j = 0;
             }
         }
     }
 
-    while (!foundRandom)
-    {
+    const thisTurn = turn;
+
+    while (thisTurn == turn) {
         const randomCol = Math.floor(Math.random() * 7);
-        const $slots = $columns.eq(randomCol).children();
-        for (let j = ($slots.length - 1); j >= 0; j--) {
-            if ($slots.eq(j).children().length == 0) {
-                // Found an empty slot, check to see slot above won't win for player
-                    // made sure player won't win off this move'
-                $token.hide();
-                $slots.eq(j).append($token);
-                $token.show('bounce', 'ease-in', 900);
-                    turn++;
-
-                    // PLACE MODAL CODE HERE
-
-
-                    // Terminate the function
-                    return 0;
-                
-            }
-        }
+        const $column = $('.column').eq(randomCol);
+        console.log("random");
+        placeToken($column);
     }
 
 
