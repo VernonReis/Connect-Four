@@ -73,7 +73,13 @@ const placeToken = ($column) => {
             $token.addClass(colors[turn % 2]);
             $token.hide();
             $slots.eq(i).append($token);
-            $token.show('bounce', 'ease-in', 900);
+            if (turn % 2 == 0 && (($('#easy:checked').length == 1) || ($('#hard:checked').length == 1)))
+                {
+                setTimeout(() => { $token.show('bounce', 'ease-in', 900) }, 250);
+            }
+            else {
+                $token.show('bounce', 'ease-in', 900);
+            }
 
             if (isWinningMove($slots.eq(i), colors[turn % 2])) {
                 console.log('slot: ' + $slots);
@@ -85,17 +91,15 @@ const placeToken = ($column) => {
 
                     // MODAL CODE
                     // If we are vs human
-                    if ($('#off:checked').length == 1)
-                    {
+                    if ($('#off:checked').length == 1) {
                         $('#playerOneWinModal').css('display', 'flex');
                         setTimeout(() => {
                             $('#playerOneWinModal').css('display', 'none');
                             clearBoard();
                         }, 3000);
-                        
+
                     }
-                    else
-                    {
+                    else {
                         $('#youWinModal').css('display', 'flex');
                         setTimeout(() => {
                             $('#youWinModal').css('display', 'none');
@@ -123,7 +127,7 @@ const placeToken = ($column) => {
                             $('#cpuWinModal').css('display', 'none');
                             clearBoard();
                         }, 3000);
-                        
+
 
                     }
                 }
@@ -201,7 +205,7 @@ const cpuHard = () => {
                     // We have a winnner, place token and set win to over
                     $token.hide();
                     $slots.eq(j).append($token);
-                    $token.show('bounce', 'ease-in', 900);
+                    setTimeout(() => { $token.show('bounce', 'ease-in', 900) }, 250);
                     turn++;
                     isOver = true;
                     cpuScore++;
@@ -233,7 +237,7 @@ const cpuHard = () => {
                     // found a potential win move for the player, block it
                     $token.hide();
                     $slots.eq(j).append($token);
-                    $token.show('bounce', 'ease-in', 900);
+                    setTimeout(() => { $token.show('bounce', 'ease-in', 900) }, 250);
                     turn++;
 
 
