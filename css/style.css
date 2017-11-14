@@ -248,5 +248,10 @@ button {
         background-color: #C490D1;
     }
 
+    .token {
+        border-radius: 50%;
+        width: 9vw;
+        height: 9vw;
+    }
 
 }
