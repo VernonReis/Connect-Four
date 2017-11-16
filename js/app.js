@@ -34,7 +34,7 @@ const clickHandler = (event) => {
         disableRadio();
     }
 
-    if (boardFull()) {
+    if (boardFull() && !isOver) {
         isOver = true;
 
         $('#tieModal').css('display', 'flex');
@@ -75,6 +75,8 @@ const placeToken = ($column) => {
         return 0;
     }
 
+
+    // iterate over the column in question to find the bottom empty slot and place a token
     for (let i = ($slots.length - 1); i >= 0; i--) {
         if ($slots.eq(i).children().length == 0) {
             const $token = $('<div>').addClass("token");
@@ -89,6 +91,7 @@ const placeToken = ($column) => {
                 $token.show('bounce', 'ease-in', 900);
             }
 
+            // Win condition handler
             if (isWinningMove($slots.eq(i), colors[turn % 2])) {
                 console.log('slot: ' + $slots);
                 console.log('i: ' + i);
@@ -108,6 +111,7 @@ const placeToken = ($column) => {
 
                     }
                     else {
+                        // If we are vs CPU
                         $('#youWinModal').css('display', 'flex');
                         setTimeout(() => {
                             $('#youWinModal').css('display', 'none');
@@ -120,7 +124,7 @@ const placeToken = ($column) => {
                     cpuScore++;
                     $('#cpuScore').text("Computer Score: " + cpuScore);
 
-
+                    // Winner is 2nd human player
                     if ($('#off:checked').length == 1) {
                         $('#playerTwoWinModal').css('display', 'flex');
                         setTimeout(() => {
@@ -130,6 +134,7 @@ const placeToken = ($column) => {
 
                     }
                     else {
+                        // Winner is CPU
                         $('#cpuWinModal').css('display', 'flex');
                         setTimeout(() => {
                             $('#cpuWinModal').css('display', 'none');
@@ -147,6 +152,8 @@ const placeToken = ($column) => {
     }
 }
 
+
+// Tie checker
 const boardFull = () => {
     const $columns = $('.column');
     for (let i = 0; i < $columns.length; i++) {
@@ -159,18 +166,22 @@ const boardFull = () => {
     }
     return true;
 }
+
+// Lock the mode selector
 const disableRadio = () => {
     $('#easy').attr('disabled', 'true');
     $('#hard').attr('disabled', 'true');
     $('#off').attr('disabled', 'true');
 }
 
+// Unlock the mode selector
 const enableRadio = () => {
     $('#easy').removeAttr('disabled');
     $('#hard').removeAttr('disabled');
     $('#off').removeAttr('disabled');
 }
 
+// Reset board fxn
 const clearBoard = (event) => {
     $('.slot').children().remove();
     turn = 1;
@@ -178,6 +189,7 @@ const clearBoard = (event) => {
     enableRadio();
 }
 
+// Reset board and scores fxn
 const fullReset = (event) => {
     $('.slot').children().remove();
     $('#playerScore').text("Player Score: 0");
@@ -193,7 +205,7 @@ const cpuHard = () => {
     // CPU strategy as follows
     // 1. Check to see if can make a winning move
     // 2. Else check to see if the player can make a winning move, if so block it
-    // 3. Else generate a random choice, double check choice won't set player up for a win
+    // 3. Else generate a random choice
 
     // function global
     const $columns = $('.column');
@@ -259,6 +271,7 @@ const cpuHard = () => {
 
     const thisTurn = turn;
 
+    // Random move
     while (thisTurn == turn) {
         const randomCol = Math.floor(Math.random() * 7);
         const $column = $('.column').eq(randomCol);
@@ -272,7 +285,7 @@ const cpuHard = () => {
 
 
 
-
+// Just makes random moves
 const cpuEasy = () => {
     const thisTurn = turn;
 
@@ -283,7 +296,7 @@ const cpuEasy = () => {
     }
 }
 
-
+// Utility fxn
 const slotAt = (x, y) => {
 
     // This function takes an x,y coordinate and returns the token at the position on the game board
@@ -294,6 +307,8 @@ const slotAt = (x, y) => {
     return $slots.eq(($slots.length - 1) - y);
 }
 
+// Utility fxn
+// Returns array containing coords of a given slot
 const getCoords = ($slot) => {
     const coords = [];
     coords[0] = Number($slot.attr('column'));
@@ -302,6 +317,8 @@ const getCoords = ($slot) => {
     return coords;
 }
 
+// Utility fxn
+// Returns the color of token inside given slot
 const getColor = ($slot) => {
     // First make sure theres a token in the slot
     if ($slot.children().length == 0) {
@@ -315,7 +332,7 @@ const getColor = ($slot) => {
     }
 }
 
-
+// WIN CHECKER
 const isWinningMove = ($slot, color) => {
     // Going to have to do 3 checks here
     // 1. Horizontal win
@@ -369,7 +386,7 @@ const isWinningMove = ($slot, color) => {
         }
     }
 
-    // Check to the right
+    // Check up
     for (let i = 1; i < 4 && (yCoord + i) < 6; i++) {
         const thisColor = getColor(slotAt(xCoord, yCoord + i));
         if (thisColor == color) {
@@ -444,15 +461,17 @@ const isWinningMove = ($slot, color) => {
         return true;
     }
 
-
+    // no winning moves, return false
     return false;
 
 }
 
+// Start arrow animation on mouseenter of parent column div
 const startBounce = (event) => {
     $arrow = $(event.currentTarget).children().eq(0).css('animation-name', 'bounce');;
 }
 
+// Start arrow animation on mouseleave of parent column div
 const stopBounce = (event) => {
     $arrow = $(event.currentTarget).children().eq(0);
     $arrow.css('animation-name', '');
@@ -464,10 +483,16 @@ $(() => {
     // Dynamic generate the column divs and populate them with an arrow and slots
     makeBoard();
 
-    // Event handler to add tokens
+    // Event handlers
+
+    // Place token
     $('.column').on('click', clickHandler);
+
+    // Start stop animation for arrows
     $('.column').on('mouseenter', startBounce);
     $('.column').on('mouseleave', stopBounce);
+
+    // Reset button handlers
     $('#clearBoard').on('click', clearBoard);
     $('#fullReset').on('click', fullReset);
     ;
