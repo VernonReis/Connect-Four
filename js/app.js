@@ -37,7 +37,11 @@ const clickHandler = (event) => {
     if (boardFull()) {
         isOver = true;
 
-        // INVOKE TIE MODAL
+        $('#tieModal').css('display', 'flex');
+        setTimeout(() => {
+            $('#tieModal').css('display', 'none');
+            clearBoard();
+        }, 3000);
     }
 
     if (!isOver && thisTurn != turn) {
@@ -54,7 +58,11 @@ const clickHandler = (event) => {
         if (boardFull()) {
             isOver = true;
 
-            // INVOKE TIE MODAL
+            $('#tieModal').css('display', 'flex');
+            setTimeout(() => {
+                $('#tieModal').css('display', 'none');
+                clearBoard();
+            }, 3000);
         }
     }
 }
