@@ -1,5 +1,5 @@
 body {
-    font-family: Arial;
+    font-family: 'Rubik', sans-serif;
     background-color: #affaff;
     margin: 0;
 }
@@ -11,6 +11,7 @@ body {
     height: 10%;
     border: 1px solid rgba(0,0,0,0);
     background-color: #fdffc1;
+    border-bottom: 2px solid black;
 }
 
 #title {
@@ -150,6 +151,7 @@ button {
     overflow: auto;
     display: none;
     vertical-align: middle;
+
 }
 
 .modal-textbox {
@@ -162,7 +164,7 @@ button {
     border-radius: 2vh;
     display: flex;
     background-color: #A0D2DB;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.4) 1vh 1vh;
 }
 
 .modal-textbox > div {

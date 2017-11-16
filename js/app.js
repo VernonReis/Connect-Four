@@ -495,6 +495,6 @@ $(() => {
     // Reset button handlers
     $('#clearBoard').on('click', clearBoard);
     $('#fullReset').on('click', fullReset);
-    ;
+    
 
 });
