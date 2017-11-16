@@ -1,6 +1,6 @@
 body {
     font-family: Arial;
-    background-color: #A0D2DB;
+    background-color: #affaff;
     margin: 0;
 }
 
@@ -10,7 +10,7 @@ body {
     min-width: 800px;
     height: 10%;
     border: 1px solid rgba(0,0,0,0);
-    background-color: #C490D1;
+    background-color: #fdffc1;
 }
 
 #title {
@@ -24,7 +24,7 @@ body {
     height: auto;
 
     justify-content: center;
-    background-color: #726DA8;
+    background-color: rgba(0,0,0,0);
 }
 
 
@@ -38,7 +38,7 @@ body {
     min-height: 250px;
     border-radius: 2vh;
     margin: 2% 2% 2% 2%;
-    background-color: #7D8CC4;
+    background-color: #8f8f8f
 }
 
 
@@ -50,7 +50,7 @@ body {
     min-height: 250px;
     border-radius: 2vh;
     margin: 2% 2% 2% 2%;
-    background-color: #7D8CC4;
+    background-color: #8f8f8f;
 }
 
 .column {
