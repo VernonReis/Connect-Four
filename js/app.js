@@ -350,7 +350,7 @@ const isWinningMove = ($slot, color) => {
             contiguous++;
         }
         else {
-            i = 4;
+            break;
         }
     }
 
@@ -361,7 +361,7 @@ const isWinningMove = ($slot, color) => {
             contiguous++;
         }
         else {
-            i = 4;
+            break;
         }
     }
 
@@ -382,7 +382,7 @@ const isWinningMove = ($slot, color) => {
             contiguous++;
         }
         else {
-            i = 4;
+            break;
         }
     }
 
@@ -393,7 +393,7 @@ const isWinningMove = ($slot, color) => {
             contiguous++;
         }
         else {
-            i = 4;
+            break;
         }
     }
 
@@ -414,7 +414,7 @@ const isWinningMove = ($slot, color) => {
             contiguous++;
         }
         else {
-            i = 4;
+            break;
         }
 
     }
@@ -443,7 +443,7 @@ const isWinningMove = ($slot, color) => {
             contiguous++;
         }
         else {
-            i = 4;
+            break;
         }
 
     }
@@ -454,7 +454,7 @@ const isWinningMove = ($slot, color) => {
             contiguous++;
         }
         else {
-            i = 4;
+            break;
         }
     }
     if (contiguous >= 4) {

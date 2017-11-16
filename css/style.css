@@ -38,7 +38,8 @@ body {
     min-height: 250px;
     border-radius: 2vh;
     margin: 2% 2% 2% 2%;
-    background-color: #8f8f8f
+    background-color: #8f8f8f;
+    box-shadow: rgba(0,0,0,0.4) 1vh 1vh;
 }
 
 
@@ -51,6 +52,7 @@ body {
     border-radius: 2vh;
     margin: 2% 2% 2% 2%;
     background-color: #8f8f8f;
+    box-shadow: rgba(0,0,0,0.4) 1vh 1vh;
 }
 
 .column {
